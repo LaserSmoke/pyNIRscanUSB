@@ -29,4 +29,4 @@ NIR getADCvalues.py reads response.txt and slices the data based upon the tpl fo
  1. wavelengths.csv which contains the wavelengths of the device which is fix based upon the devices configuration. 
  2. reference.csv which contains the reference values from the device which is also fixed during usage. 
  
- However, these files are unique to a specific device and therefore, there would be a requirement when using this script with multiple devices to have wavelength and reference files for each device. and one would have to read the device serial number from ScanData in order to pick correct files. this is currently not included , but serial number could be grabbed from the ScanData file by appropriate slice,
+ However, these files are unique to a specific device and therefore, there would be a requirement when using this script with multiple devices to have wavelength and reference files for each device. and one would have to read the device serial number from ScanData in order to pick correct files. this is currently not included. NNO_SERIAL_NUMBER_READ  cmd can be used to aquire serial number (easier than slicing ScanData to find it). 
