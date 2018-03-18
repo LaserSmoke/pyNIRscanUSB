@@ -39,8 +39,14 @@ binary_array=bytearray(serial_adc)
 
 cnt = 0
 for i in range(0,num_pts):
-    if i==45 or i==175:
-        value=struct.unpack('I',struct.pack('B'*4,binary_array[cnt],binary_array[cnt+1],binary_array[cnt-2],binary_array[cnt-1]))[0]
+    if i==45:
+        previous_value=struct.unpack('I',struct.pack('B'*4,binary_array[cnt-4],binary_array[cnt-3],binary_array[cnt-2],binary_array[cnt-1]))[0]
+        next_value=struct.unpack('I',struct.pack('B'*4,binary_array[cnt+12],binary_array[cnt+13],binary_array[cnt+14],binary_array[cnt+15]))[0]
+        value=(previous_value+next_value)/2
+    elif i==175:
+        previous_value = struct.unpack('I', struct.pack('B' * 4, binary_array[cnt - 4], binary_array[cnt - 3], binary_array[cnt - 2], binary_array[cnt - 1]))[0]
+        next_value = struct.unpack('I', struct.pack('B' * 4, binary_array[cnt + 16], binary_array[cnt + 17],binary_array[cnt + 18], binary_array[cnt + 19]))[0]
+        value = (previous_value+next_value)/2
     else:
         value = struct.unpack('I', struct.pack('B' * 4, binary_array[cnt], binary_array[cnt + 1], binary_array[cnt + 2],binary_array[cnt + 3]))[0]
 
